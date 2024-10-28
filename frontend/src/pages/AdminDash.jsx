@@ -35,19 +35,21 @@ const AdminDash = () => {
 
   const fetchData = async () => {
     try {
-      const response = await axios.get("http://localhost:5000/api/admin");
-      // dispatch(setUsers(response.data.users)); // Assuming you have a setUsers action to update the Redux store
-      setInfo(response.data.users)
-      console.log(response)
-      if (error) {
-        toast.error(error)
-        navigate('')
+        const response = await fetch("http://localhost:5000/api/admin");
+        if (!response.ok) {
+          throw new Error(`HTTP error! status: ${response.status}`);
+        }
+        const data = await response.json();
+        console.log("API Response:", data);
+        setInfo(data.users || []);
+        setIsLoading(false);
+      } catch (error) {
+        console.error("Error fetching data:", error);
+        setError(error.message);
+        setIsLoading(false);
       }
-    } catch (error) {
-      console.error("Error fetching users:", error);
-    }
-  };
 
+    }
   const handleDelete = async (_id) => {
     try {
       await axios.delete(`http://localhost:5000/api/admin/${_id}`);
