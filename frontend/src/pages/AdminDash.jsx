@@ -35,7 +35,7 @@ const AdminDash = () => {
 
   const fetchData = async () => {
     try {
-        const response = await fetch("http://localhost:5000/api/admin");
+        const response = await fetch("/api/admin");
         if (!response.ok) {
           throw new Error(`HTTP error! status: ${response.status}`);
         }
