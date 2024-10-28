@@ -19,27 +19,6 @@ const Deposit = () => {
         <h1 className="font-bold text-3xl">Deposit</h1>
         <div className="flex w-[300px] border rounded-md h-[200px] items-center p-2 justify-between">
           <HiInformationCircle size={30} />
-          <div className="flex flex-col gap-2">
-            <h1>NOTE: </h1>
-            <p className="text-xs">
-              Send Proof of payment to{" "}
-              <a
-                href="https://api.whatsapp.com/send/?phone=%2B2347026564371&text&type=phone_number&app_absent=0"
-                className="font-bold text-sky-400"
-                target="_blank"
-              >
-                Number 1
-              </a>{" "}
-              <br /> or{" "}
-              <a
-                href="https://api.whatsapp.com/send/?phone=%2B12132951387&text&type=phone_number&app_absent=0"
-                className="font-bold text-sky-400"
-                target="_blank"
-              >
-                Number 2
-              </a>
-            </p>
-          </div>
         </div>
         <div className="h-full w-[350px]  bg-purple-400  flex justify-between rounded-md bg-clip-padding backdrop-filter backdrop-blur-md bg-opacity-0 border border-gray-100">
           <table className="border-none">
