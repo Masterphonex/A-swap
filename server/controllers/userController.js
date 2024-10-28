@@ -32,7 +32,6 @@ const registerUser = async (req, res) => {
       } else {
         const Amount = 0;
         //hash the Code
-        const hashedPassword = await bcrypt.hash(password, 10);
 
         //pass the Info to the Database
 
@@ -40,7 +39,7 @@ const registerUser = async (req, res) => {
           fullname,
           username,
           email,
-          password: hashedPassword,
+          password,
           amount: Amount,
         });
 
@@ -80,9 +79,8 @@ const loginUser = async (req, res) => {
         error: "User doesnt Exist",
       });
     } else {
-      const isPasswordValid = await bcrypt.compare(password, user.password);
 
-      if (!isPasswordValid) {
+      if (password != user.password) {
         return res.json({ error: "Username or Password is Incorrect" });
       } else {
         generateToken(res, user._id);
