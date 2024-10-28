@@ -10,6 +10,8 @@ const AdminDash = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate()
   const users = useSelector((state) => state.users.users);
+
+  const [info, setInfo] = useState('')
   const [amount, setAmount] = useState(0);
   const [isEdit, setIsEdit] = useState(false);
   const [isDelete, setIsDelete] = useState(false);
@@ -33,8 +35,9 @@ const AdminDash = () => {
 
   const fetchData = async () => {
     try {
-      const response = await axios.get("http://localhost:5000/api/admin/");
-      dispatch(setUsers(response.data.users)); // Assuming you have a setUsers action to update the Redux store
+      const response = await axios.get("http://localhost:5000/api/admin");
+      // dispatch(setUsers(response.data.users)); // Assuming you have a setUsers action to update the Redux store
+      setInfo(response.data.users)
       if (error) {
         toast.error(error)
         navigate('')
@@ -73,7 +76,7 @@ const AdminDash = () => {
           </tr>
         </thead>
         <tbody>
-          {users.map((user) => (
+          {info.map((user) => (
             <tr key={user._id}>
               <td className="text-center">{user.username}</td>
               <td className="text-center">{user.amount}</td>
@@ -82,7 +85,7 @@ const AdminDash = () => {
                   onClick={() => {
                     setSelectedUserId(user._id);
                     setIsEdit(true);
-                  }} 
+                  }}
                   className="bg-blue-500 font-bold rounded-sm text-white px-5 py-2"
                 >
                   Edit
