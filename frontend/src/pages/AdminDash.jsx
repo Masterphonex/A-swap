@@ -19,7 +19,7 @@ const AdminDash = () => {
 
   const handleEdit = async (_id) => {
     try {
-      await axios.put(`http://localhost:5000/api/admin/${_id}`, {
+      await axios.put(`/api/admin/${_id}`, {
         amount,
       });
 
@@ -52,7 +52,7 @@ const AdminDash = () => {
     }
   const handleDelete = async (_id) => {
     try {
-      await axios.delete(`http://localhost:5000/api/admin/${_id}`);
+      await axios.delete(`/api/admin/${_id}`);
       setUsers(users.filter((user) => user._id !== _id));
       setIsDelete(false);
     } catch (error) {
