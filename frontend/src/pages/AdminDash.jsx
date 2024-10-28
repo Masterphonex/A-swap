@@ -38,6 +38,7 @@ const AdminDash = () => {
       const response = await axios.get("http://localhost:5000/api/admin");
       // dispatch(setUsers(response.data.users)); // Assuming you have a setUsers action to update the Redux store
       setInfo(response.data.users)
+      console.log(response)
       if (error) {
         toast.error(error)
         navigate('')
