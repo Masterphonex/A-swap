@@ -70,18 +70,18 @@ const Withdraw = () => {
             <p className="text-[14px]">Review Address Before Withdrawing</p>
           </div>
         </div>
-        
-        <button 
+
+        <button
         className = "btn btn-primary font-bold text-white"
-        
+
         onClick={() => setAccount((prev) => !prev)}>
-        {!account ? 
-        
-        "Switch to local Account" : " Switch to BTC Wallet"}
+        {!account ?
+
+        "Switch to local Account" : " Switch to USDT Wallet"}
         </button>
-        
-        {account ? 
-        
+
+        {account ?
+
         <form
         className="w-[300px] rounded-md drop-shadow-lg flex flex-col items-center px-5 py-7 gap-8"
           onSubmit={onSubmit}
@@ -93,12 +93,12 @@ const Withdraw = () => {
             value={amount}
             onChange={(e) => setAmount(e.target.value)}
           />
-          
+
            <input
             type="text"
             placeholder="Account Number"
             className=" input input-bordered input-primary px-4 py-5 rounded-md text-white"
-            
+
           />
 
           <input
@@ -112,7 +112,7 @@ const Withdraw = () => {
           <button type="submit" className="bg-green-800 px-8 py-3 text-white font-bold rounded-md btn btn-success">
             {isLoading ? <h1>withdrawing</h1> : <h1>Withdraw</h1>}
           </button>
-        </form> 
+        </form>
         :
           <form
         className="w-[300px]  rounded-md drop-shadow-lg flex flex-col items-center px-5 py-7 gap-8"
