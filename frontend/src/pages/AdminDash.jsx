@@ -19,17 +19,23 @@ const AdminDash = () => {
 
   const handleEdit = async (_id) => {
     try {
-      await axios.put(`/api/admin/${_id}`, {
-        amount,
-      });
+        const response = await fetch(`/api/admin/${_id}`, {
+          method: "PUT",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({ amount }),
+        });
 
-      // Update the user's amount in the Redux store
-      dispatch(updateUserAmount({ userId: _id, newAmount: amount }));
+        if (!response.ok) {
+          throw new Error(`HTTP error! status: ${response.status}`);
+        }
 
-      setIsEdit(false);
-    } catch (err) {
-      console.log(err);
-    }
+        dispatch(updateUserAmount({ userId: _id, newAmount: amount }));
+        setIsEdit(false);
+      } catch (err) {
+        console.error("Error editing user:", err);
+      }
   };
 
 
@@ -52,13 +58,20 @@ const AdminDash = () => {
     }
   const handleDelete = async (_id) => {
     try {
-      await axios.delete(`/api/admin/${_id}`);
-      setUsers(users.filter((user) => user._id !== _id));
-      setIsDelete(false);
-    } catch (error) {
-      console.error("Error deleting user:", error);
-      // Handle error, show message, or perform other actions
-    }
+        const response = await fetch(`/api/admin/${_id}`, {
+          method: "DELETE",
+        });
+
+        if (!response.ok) {
+          throw new Error(`HTTP error! status: ${response.status}`);
+        }
+
+        setUsers(users.filter((user) => user._id !== _id));
+        setIsDelete(false);
+      } catch (error) {
+        console.error("Error deleting user:", error);
+        // Handle error, show message, or perform other actions
+      }
   };
 
   useEffect(() => {
