@@ -11,7 +11,7 @@ const AdminDash = () => {
   const navigate = useNavigate()
   const users = useSelector((state) => state.users.users);
 
-  const [info, setInfo] = useState('')
+  const [info, setInfo] = useState([])
   const [amount, setAmount] = useState(0);
   const [isEdit, setIsEdit] = useState(false);
   const [isDelete, setIsDelete] = useState(false);
